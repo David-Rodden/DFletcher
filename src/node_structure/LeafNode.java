@@ -4,18 +4,11 @@ import org.dreambot.api.methods.MethodContext;
 
 public class LeafNode implements TaskEvent {
     private final MethodContext context;
-    private BranchNode success, failure;
+    private BranchNode parent;
 
-    public LeafNode(final MethodContext context) {
+    public LeafNode(final MethodContext context, final BranchNode parent) {
         this.context = context;
-    }
-
-    public BranchNode getSuccess() {
-        return success;
-    }
-
-    public BranchNode getFailure() {
-        return failure;
+        this.parent = parent;
     }
 
     @Override
@@ -29,5 +22,14 @@ public class LeafNode implements TaskEvent {
 
     protected MethodContext getContext() {
         return context;
+    }
+
+    /**
+     * A quick means of checking whether the leaf node has successfully executed
+     * Used solely within the context of a #sleepUntil within the #execute method
+     * @return
+     */
+    protected boolean isParentConditionValid(){
+        return parent.isValid();
     }
 }
