@@ -11,10 +11,11 @@ public class FletchingSetToAll extends LeafNode {
     }
 
     @Override
-    public void execute() {
+    public boolean execute() {
         final WidgetChild allButton = getContext().getWidgets().getWidgetChild(270, 12);
-        if(allButton == null)   return;
+        if(allButton == null)   return TASK_SUCCESS;
         allButton.interact();
         MethodContext.sleepUntil(this::isParentConditionValid, 3000);
+        return TASK_SUCCESS;
     }
 }

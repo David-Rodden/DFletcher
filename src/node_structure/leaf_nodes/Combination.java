@@ -11,9 +11,9 @@ public class Combination extends LeafNode {
     }
 
     @Override
-    public void execute() {
-        final MethodContext context = getContext();
-        context.getInventory().get("Knife").useOn("Maple logs");
-        MethodProvider.sleepUntil(() -> true, 5000);
+    public boolean execute() {
+        getContext().getInventory().get("Knife").useOn("Maple logs");
+        MethodProvider.sleepUntil(this::isParentConditionValid, 5000);
+        return TASK_SUCCESS;
     }
 }

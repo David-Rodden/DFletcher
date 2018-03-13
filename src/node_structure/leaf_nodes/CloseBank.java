@@ -10,8 +10,9 @@ public class CloseBank extends LeafNode{
     }
 
     @Override
-    public void execute() {
+    public boolean execute() {
         getContext().getBank().close();
         MethodContext.sleepUntil(this::isParentConditionValid, 3000);
+        return TASK_SUCCESS;
     }
 }

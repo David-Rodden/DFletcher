@@ -4,7 +4,7 @@ import node_structure.BranchNode;
 import org.dreambot.api.methods.MethodContext;
 
 public class ContainsItems extends BranchNode {
-    public ContainsItems(final MethodContext context) {
+    protected ContainsItems(final MethodContext context) {
         super(context);
     }
 

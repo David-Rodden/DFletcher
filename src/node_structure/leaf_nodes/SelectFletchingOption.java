@@ -20,8 +20,9 @@ public class SelectFletchingOption extends LeafNode {
     }
 
     @Override
-    public void execute() {
+    public boolean execute() {
         getContext().getWidgets().getWidgetChild(270, selectedProduct).interact();
         MethodContext.sleepUntil(this::isParentConditionValid, 4000);
+        return TASK_SUCCESS;
     }
 }

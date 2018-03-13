@@ -1,5 +1,9 @@
 package node_structure;
 
 public interface TaskEvent extends TaskCondition {
-    void execute();
+    /**
+     * Returns true if should quit program
+     * @return
+     */
+    boolean execute();
 }
