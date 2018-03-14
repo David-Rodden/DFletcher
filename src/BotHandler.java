@@ -22,7 +22,6 @@ public class BotHandler extends AbstractScript{
      */
     @Override
     public int onLoop() {
-        fletchingHandler.verify();
-        return 0;
+        return fletchingHandler.verify();
     }
 }
