@@ -27,12 +27,12 @@ public class BranchNode implements TaskCondition {
         return success == null && failure == null;
     }
 
-    public void setSuccess(final BranchNode success) {
-        this.success = success;
+    public BranchNode setSuccess(final BranchNode success) {
+        return this.success = success;
     }
 
-    public void setFailure(final BranchNode failure) {
-        this.failure = failure;
+    public BranchNode setFailure(final BranchNode failure) {
+        return this.failure = failure;
     }
 
     protected MethodContext getContext() {

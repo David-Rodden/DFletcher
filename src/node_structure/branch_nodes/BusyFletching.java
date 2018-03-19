@@ -4,7 +4,7 @@ import node_structure.BranchNode;
 import org.dreambot.api.methods.MethodContext;
 
 public class BusyFletching extends BranchNode {
-    protected BusyFletching(final MethodContext context) {
+    public BusyFletching(final MethodContext context) {
         super(context);
     }
 

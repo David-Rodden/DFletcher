@@ -4,7 +4,7 @@ import node_structure.BranchNode;
 import org.dreambot.api.methods.MethodContext;
 
 public class FletchingSetToAll extends BranchNode{
-    protected FletchingSetToAll(final MethodContext context) {
+    public FletchingSetToAll(final MethodContext context) {
         super(context);
     }
 

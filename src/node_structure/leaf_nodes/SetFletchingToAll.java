@@ -5,8 +5,8 @@ import node_structure.LeafNode;
 import org.dreambot.api.methods.MethodContext;
 import org.dreambot.api.wrappers.widgets.WidgetChild;
 
-public class FletchingSetToAll extends LeafNode {
-    public FletchingSetToAll(final MethodContext context, final BranchNode parent) {
+public class SetFletchingToAll extends LeafNode {
+    public SetFletchingToAll(final MethodContext context, final BranchNode parent) {
         super(context, parent);
     }
 
