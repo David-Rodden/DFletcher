@@ -25,4 +25,9 @@ public class SelectFletchingOption extends LeafNode {
         MethodContext.sleepUntil(this::isParentConditionValid, 4000);
         return TASK_SUCCESS;
     }
+
+    @Override
+    public String getTaskDescription() {
+        return "Selecting crafting product";
+    }
 }

@@ -4,7 +4,9 @@ import org.dreambot.api.script.AbstractScript;
 import org.dreambot.api.script.Category;
 import org.dreambot.api.script.ScriptManifest;
 
-@ScriptManifest(author = "Dungeonqueer", version = 1, name = "DFletcher", category = Category.FLETCHING)
+import java.awt.*;
+
+@ScriptManifest(author = "Dungeonqueer", version = 1.01, name = "DFletcher", category = Category.FLETCHING)
 public class BotHandler extends AbstractScript{
     private FletchingHandler fletchingHandler;
     /**
@@ -12,7 +14,7 @@ public class BotHandler extends AbstractScript{
      */
     @Override
     public void onStart() {
-        fletchingHandler = new FletchingHandler(new ContainsItems(this));
+        fletchingHandler = new FletchingHandler(this);
         super.onStart();
     }
 
@@ -23,5 +25,13 @@ public class BotHandler extends AbstractScript{
     @Override
     public int onLoop() {
         return fletchingHandler.verify();
+    }
+
+    @Override
+    public void onPaint(final Graphics graphics) {
+        graphics.setColor(Color.CYAN);
+        graphics.drawString("DFletcher", 20, 20);
+        graphics.drawString("Current task: " + fletchingHandler.getTaskDescription(), 20, 40);
+        super.onPaint(graphics);
     }
 }

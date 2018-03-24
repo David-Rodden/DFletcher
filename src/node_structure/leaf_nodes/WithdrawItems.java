@@ -17,4 +17,9 @@ public class WithdrawItems extends LeafNode {
         MethodContext.sleepUntil(this::isParentConditionValid, 5000);
         return TASK_SUCCESS;
     }
+
+    @Override
+    public String getTaskDescription() {
+        return "Withdrawing resources";
+    }
 }

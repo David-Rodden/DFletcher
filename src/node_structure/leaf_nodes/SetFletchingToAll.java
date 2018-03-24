@@ -18,4 +18,9 @@ public class SetFletchingToAll extends LeafNode {
         MethodContext.sleepUntil(this::isParentConditionValid, 3000);
         return TASK_SUCCESS;
     }
+
+    @Override
+    public String getTaskDescription() {
+        return "Selecting \"all\"";
+    }
 }

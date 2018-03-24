@@ -25,4 +25,8 @@ public class LeafNode extends BranchNode implements TaskEvent {
     protected boolean isParentConditionValid() {
         return parent.isValid();
     }
+
+    public String getTaskDescription(){
+        return "No current task";
+    }
 }

@@ -11,6 +11,7 @@ import java.util.Random;
 public class FletchingHandler {
     private final BranchNode root;
     private final Random random;
+    private String taskDescription;
 
     public FletchingHandler(final MethodContext context) {
         this.root = buildTree(context);
@@ -43,6 +44,12 @@ public class FletchingHandler {
         BranchNode pointer = root;
         while (!(pointer instanceof LeafNode))
             pointer = pointer.isValid() ? pointer.getSuccess() : pointer.getFailure();
-        return ((LeafNode) pointer).execute() ? -1 : random.nextInt(1500);
+        final LeafNode toExecute = ((LeafNode) pointer);
+        taskDescription = toExecute.getTaskDescription();
+        return toExecute.execute() ? -1 : random.nextInt(1500);
+    }
+
+    public String getTaskDescription(){
+        return taskDescription;
     }
 }

@@ -18,4 +18,9 @@ public class KillProcess extends LeafNode {
     public boolean execute() {
         return TASK_FAILURE;
     }
+
+    @Override
+    public String getTaskDescription() {
+        return "Ending program";
+    }
 }

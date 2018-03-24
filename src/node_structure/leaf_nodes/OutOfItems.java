@@ -15,4 +15,9 @@ public class OutOfItems extends LeafNode {
         final Bank bank = getContext().getBank();
         return (!bank.contains("Knife") || !bank.contains("Maple logs"))? TASK_FAILURE: TASK_SUCCESS;
     }
+
+    @Override
+    public String getTaskDescription() {
+        return "We don't have resources";
+    }
 }

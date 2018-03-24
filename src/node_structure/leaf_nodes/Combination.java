@@ -16,4 +16,9 @@ public class Combination extends LeafNode {
         MethodProvider.sleepUntil(this::isParentConditionValid, 5000);
         return TASK_SUCCESS;
     }
+
+    @Override
+    public String getTaskDescription() {
+        return "Combining Knife & Maple logs";
+    }
 }
