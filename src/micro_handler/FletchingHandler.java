@@ -26,11 +26,14 @@ public class FletchingHandler {
     private BranchNode buildTree(final MethodContext context) {
         final BranchNode root = new BusyFletching(context);
         BranchNode failureBranch = root;
+        failureBranch.setSuccess(new IdleWhileFletching(context, failureBranch));
         failureBranch = failureBranch.setFailure(new ContainsItems(context));
         BranchNode successBranch = failureBranch.setSuccess(new BankOpen(context));
         failureBranch = failureBranch.setFailure(new BankOpen(context));
         failureBranch.setFailure(new OpenBank(context, failureBranch));
-        failureBranch.setSuccess(new WithdrawItems(context, failureBranch));
+        failureBranch = failureBranch.setSuccess(new InventoryFull(context));
+        failureBranch.setFailure(new WithdrawItems(context, failureBranch));
+        failureBranch.setSuccess(new DepositItems(context, failureBranch));
         successBranch.setSuccess(new CloseBank(context, successBranch));
         failureBranch = successBranch.setFailure(new FletchingInterfaceOpen(context));
         failureBranch.setFailure(new Combination(context, failureBranch));
@@ -51,7 +54,7 @@ public class FletchingHandler {
         final LeafNode toExecute = ((LeafNode) pointer);
         taskDescription = toExecute.getTaskDescription();
         MethodContext.log(path.toString());
-        return toExecute.execute() ? -1 : random.nextInt(1500);
+        return toExecute.execute() ? -1 : random.nextInt(50);
     }
 
     public String getTaskDescription(){

@@ -13,7 +13,7 @@ public class DepositItems extends LeafNode {
     @Override
     public boolean execute() {
         final Bank bank = getContext().getBank();
-        bank.depositAll("Maple logs");
+        bank.depositAll("Maple longbow (u)");
         MethodContext.sleepUntil(this::isParentConditionValid, 4000);
         return TASK_SUCCESS;
     }

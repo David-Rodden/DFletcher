@@ -20,6 +20,6 @@ public class FletchingSetToAll extends BranchNode{
         final WidgetChild widgetChild = getContext().getWidgets().getWidgetChild(270, 12);
         if(widgetChild == null) return false;
         final String[] actions = widgetChild.getActions();
-        return actions != null && actions.length != 0;
+        return actions == null;
     }
 }
