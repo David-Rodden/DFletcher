@@ -2,6 +2,7 @@ package node_structure.branch_nodes;
 
 import node_structure.BranchNode;
 import org.dreambot.api.methods.MethodContext;
+import org.dreambot.api.methods.widget.Widget;
 
 public class FletchingInterfaceOpen extends BranchNode{
 
@@ -11,6 +12,7 @@ public class FletchingInterfaceOpen extends BranchNode{
 
     @Override
     public boolean isValid() {
-        return getContext().getWidgets().getWidget(270).isVisible();
+        final Widget widget = getContext().getWidgets().getWidget(270);
+        return widget != null && widget.isVisible();
     }
 }

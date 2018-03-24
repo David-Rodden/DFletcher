@@ -42,10 +42,15 @@ public class FletchingHandler {
 
     public int verify() {
         BranchNode pointer = root;
-        while (!(pointer instanceof LeafNode))
+        final StringBuffer path = new StringBuffer();
+        while (!(pointer instanceof LeafNode)) {
             pointer = pointer.isValid() ? pointer.getSuccess() : pointer.getFailure();
+            path.append(pointer.getClass().getSimpleName());
+            if(!(pointer instanceof LeafNode)) path.append(" -> ");
+        }
         final LeafNode toExecute = ((LeafNode) pointer);
         taskDescription = toExecute.getTaskDescription();
+        MethodContext.log(path.toString());
         return toExecute.execute() ? -1 : random.nextInt(1500);
     }
 

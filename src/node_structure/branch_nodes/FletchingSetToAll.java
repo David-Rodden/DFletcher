@@ -2,6 +2,7 @@ package node_structure.branch_nodes;
 
 import node_structure.BranchNode;
 import org.dreambot.api.methods.MethodContext;
+import org.dreambot.api.wrappers.widgets.WidgetChild;
 
 public class FletchingSetToAll extends BranchNode{
     public FletchingSetToAll(final MethodContext context) {
@@ -16,6 +17,9 @@ public class FletchingSetToAll extends BranchNode{
      */
     @Override
     public boolean isValid() {
-        return getContext().getWidgets().getWidgetChild(270, 12).getActions().length == 0;
+        final WidgetChild widgetChild = getContext().getWidgets().getWidgetChild(270, 12);
+        if(widgetChild == null) return false;
+        final String[] actions = widgetChild.getActions();
+        return actions != null && actions.length != 0;
     }
 }
