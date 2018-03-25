@@ -14,7 +14,7 @@ public class DepositItems extends LeafNode {
     public boolean execute() {
         final Bank bank = getContext().getBank();
         bank.depositAll("Maple longbow (u)");
-        MethodContext.sleepUntil(this::isParentConditionValid, 4000);
+        MethodContext.sleepUntil(() -> !isParentConditionValid(), 1000);
         return TASK_SUCCESS;
     }
 

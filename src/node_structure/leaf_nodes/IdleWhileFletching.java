@@ -5,13 +5,13 @@ import node_structure.LeafNode;
 import org.dreambot.api.methods.MethodContext;
 
 public class IdleWhileFletching extends LeafNode {
-    public IdleWhileFletching(final MethodContext context, final BranchNode parent) {
-        super(context, parent);
+    public IdleWhileFletching(final MethodContext context, final BranchNode parent, final boolean antiBanActive) {
+        super(context, parent, antiBanActive);
     }
 
     @Override
     public boolean execute() {
-        MethodContext.sleepUntil(() -> !this.isParentConditionValid(), 5000);
+        MethodContext.sleepUntil(() -> !isParentConditionValid(), 2000);
         return super.execute();
     }
 

@@ -13,7 +13,7 @@ public class Combination extends LeafNode {
     @Override
     public boolean execute() {
         getContext().getInventory().get("Knife").useOn("Maple logs");
-        MethodProvider.sleepUntil(this::isParentConditionValid, 5000);
+        MethodProvider.sleepUntil(this::isParentConditionValid, 1000);
         return TASK_SUCCESS;
     }
 

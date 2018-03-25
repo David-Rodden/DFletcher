@@ -4,7 +4,7 @@ import node_structure.BranchNode;
 import node_structure.LeafNode;
 import org.dreambot.api.methods.MethodContext;
 
-public class CloseBank extends LeafNode{
+public class CloseBank extends LeafNode {
     public CloseBank(final MethodContext context, final BranchNode parent) {
         super(context, parent);
     }
@@ -12,7 +12,7 @@ public class CloseBank extends LeafNode{
     @Override
     public boolean execute() {
         getContext().getBank().close();
-        MethodContext.sleepUntil(this::isParentConditionValid, 3000);
+        MethodContext.sleepUntil(() -> !isParentConditionValid(), 1000);
         return TASK_SUCCESS;
     }
 

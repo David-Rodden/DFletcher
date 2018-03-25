@@ -15,7 +15,7 @@ public class SetFletchingToAll extends LeafNode {
         final WidgetChild allButton = getContext().getWidgets().getWidgetChild(270, 12);
         if(allButton == null)   return TASK_SUCCESS;
         allButton.interact();
-        MethodContext.sleepUntil(this::isParentConditionValid, 3000);
+        MethodContext.sleepUntil(this::isParentConditionValid, 1000);
         return TASK_SUCCESS;
     }
 

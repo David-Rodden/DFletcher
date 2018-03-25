@@ -12,21 +12,25 @@ public class FletchingHandler {
     private final BranchNode root;
     private final Random random;
     private String taskDescription;
+    private AntiBanHandler antiBanHandler;
+
 
     public FletchingHandler(final MethodContext context) {
         this.root = buildTree(context);
         random = new Random();
+        antiBanHandler = new AntiBanHandler(context);
     }
 
     /**
      * Building the connection of the nodes in the structure of a tree
+     *
      * @param context
      * @return
      */
     private BranchNode buildTree(final MethodContext context) {
         final BranchNode root = new BusyFletching(context);
         BranchNode failureBranch = root;
-        failureBranch.setSuccess(new IdleWhileFletching(context, failureBranch));
+        failureBranch.setSuccess(new IdleWhileFletching(context, failureBranch, true));
         failureBranch = failureBranch.setFailure(new ContainsItems(context));
         BranchNode successBranch = failureBranch.setSuccess(new BankOpen(context));
         failureBranch = failureBranch.setFailure(new BankOpen(context));
@@ -45,19 +49,15 @@ public class FletchingHandler {
 
     public int verify() {
         BranchNode pointer = root;
-        final StringBuffer path = new StringBuffer();
-        while (!(pointer instanceof LeafNode)) {
+        while (!(pointer instanceof LeafNode))
             pointer = pointer.isValid() ? pointer.getSuccess() : pointer.getFailure();
-            path.append(pointer.getClass().getSimpleName());
-            if(!(pointer instanceof LeafNode)) path.append(" -> ");
-        }
         final LeafNode toExecute = ((LeafNode) pointer);
         taskDescription = toExecute.getTaskDescription();
-        MethodContext.log(path.toString());
-        return toExecute.execute() ? -1 : random.nextInt(50);
+        if(toExecute.isAntiBanActive()) antiBanHandler.verify();
+        return toExecute.execute() ? -1 : random.nextInt(25);
     }
 
-    public String getTaskDescription(){
+    public String getTaskDescription() {
         return taskDescription;
     }
 }

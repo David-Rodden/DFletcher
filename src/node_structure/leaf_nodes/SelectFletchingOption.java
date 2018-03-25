@@ -14,6 +14,7 @@ public class SelectFletchingOption extends LeafNode {
      * 18 - shield
      */
     final int selectedProduct;
+
     public SelectFletchingOption(final MethodContext context, final BranchNode parent) {
         super(context, parent);
         selectedProduct = 16;
@@ -22,7 +23,7 @@ public class SelectFletchingOption extends LeafNode {
     @Override
     public boolean execute() {
         getContext().getWidgets().getWidgetChild(270, selectedProduct).interact();
-        MethodContext.sleepUntil(this::isParentConditionValid, 4000);
+        MethodContext.sleepUntil(() -> !isParentConditionValid(), 1000);
         return TASK_SUCCESS;
     }
 

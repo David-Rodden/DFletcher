@@ -3,6 +3,7 @@ package node_structure.leaf_nodes;
 import node_structure.BranchNode;
 import node_structure.LeafNode;
 import org.dreambot.api.methods.MethodContext;
+import org.dreambot.api.methods.container.impl.bank.Bank;
 
 public class WithdrawItems extends LeafNode {
     public WithdrawItems(final MethodContext context, final BranchNode parent) {
@@ -13,8 +14,10 @@ public class WithdrawItems extends LeafNode {
     public boolean execute() {
         final MethodContext context = getContext();
         final boolean hasKnife = context.getInventory().contains("Knife");
+        final Bank bank = context.getBank();
+        if((!hasKnife && !bank.contains("Knife")) || !bank.contains("Maple logs")) return TASK_FAILURE;
         context.getBank().withdraw(!hasKnife ? "Knife" : "Maple logs", !hasKnife ? 1 : 27);
-        MethodContext.sleepUntil(this::isParentConditionValid, 5000);
+        MethodContext.sleepUntil(this::isParentConditionValid, 2000);
         return TASK_SUCCESS;
     }
 

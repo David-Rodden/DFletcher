@@ -10,11 +10,6 @@ public class BusyFletching extends BranchNode {
 
     @Override
     public boolean isValid() {
-        final FletchingInspector fletchingInspector = new FletchingInspector();
-        MethodContext.sleepUntil(() -> {
-            if (getContext().getLocalPlayer().isAnimating()) fletchingInspector.setHasFletched(true);
-            return fletchingInspector.hasFletched();
-        }, 5000);
-        return fletchingInspector.hasFletched();
+        return getContext().getLocalPlayer().isAnimating();
     }
 }

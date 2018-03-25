@@ -6,7 +6,7 @@ import org.dreambot.api.script.ScriptManifest;
 
 import java.awt.*;
 
-@ScriptManifest(author = "Dungeonqueer", version = 1.04, name = "DFletcher", category = Category.FLETCHING)
+@ScriptManifest(author = "Dungeonqueer", version = 1.09, name = "DFletcher", category = Category.FLETCHING)
 public class BotHandler extends AbstractScript{
     private FletchingHandler fletchingHandler;
     /**

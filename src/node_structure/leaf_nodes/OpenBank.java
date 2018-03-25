@@ -12,7 +12,7 @@ public class OpenBank extends LeafNode {
     @Override
     public boolean execute() {
         getContext().getBank().open();
-        MethodContext.sleepUntil(this::isParentConditionValid, 3000);
+        MethodContext.sleepUntil(this::isParentConditionValid, 1000);
         return TASK_SUCCESS;
     }
 
