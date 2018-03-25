@@ -1,7 +1,6 @@
 package micro_handler;
 
 import node_structure.AntiBanNode;
-import node_structure.antiban.ExamineObject;
 import node_structure.antiban.RightClickPlayers;
 import node_structure.antiban.RotateCamera;
 import org.dreambot.api.methods.MethodContext;
@@ -22,7 +21,6 @@ class AntiBanHandler {
     void verify() {
         if (random.nextInt(10) == 0) {
             final AntiBanNode current = antiBanNodes.get(random.nextInt(antiBanNodes.size()));
-            MethodContext.log(current.getClass().getSimpleName() + " activated");
             current.execute();
         }
     }

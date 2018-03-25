@@ -1,5 +1,6 @@
 package node_structure.leaf_nodes;
 
+import items.FletchingProducts;
 import node_structure.BranchNode;
 import node_structure.LeafNode;
 import org.dreambot.api.methods.MethodContext;
@@ -15,8 +16,8 @@ public class WithdrawItems extends LeafNode {
         final MethodContext context = getContext();
         final boolean hasKnife = context.getInventory().contains("Knife");
         final Bank bank = context.getBank();
-        if((!hasKnife && !bank.contains("Knife")) || !bank.contains("Maple logs")) return TASK_FAILURE;
-        context.getBank().withdraw(!hasKnife ? "Knife" : "Maple logs", !hasKnife ? 1 : 27);
+        if((!hasKnife && !bank.contains("Knife")) || !bank.contains(FletchingProducts.MAPLE_LOGS.getName())) return TASK_FAILURE;
+        context.getBank().withdraw(!hasKnife ? "Knife" : FletchingProducts.MAPLE_LOGS.getName(), !hasKnife ? 1 : 27);
         MethodContext.sleepUntil(this::isParentConditionValid, 2000);
         return TASK_SUCCESS;
     }

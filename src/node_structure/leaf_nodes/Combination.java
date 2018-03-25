@@ -1,5 +1,6 @@
 package node_structure.leaf_nodes;
 
+import items.FletchingProducts;
 import node_structure.BranchNode;
 import node_structure.LeafNode;
 import org.dreambot.api.methods.MethodContext;
@@ -12,7 +13,7 @@ public class Combination extends LeafNode {
 
     @Override
     public boolean execute() {
-        getContext().getInventory().get("Knife").useOn("Maple logs");
+        getContext().getInventory().get("Knife").useOn(FletchingProducts.MAPLE_LOGS.getName());
         MethodProvider.sleepUntil(this::isParentConditionValid, 1000);
         return TASK_SUCCESS;
     }

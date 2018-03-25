@@ -5,6 +5,7 @@ import node_structure.LeafNode;
 import node_structure.branch_nodes.*;
 import node_structure.leaf_nodes.*;
 import org.dreambot.api.methods.MethodContext;
+import org.dreambot.api.methods.container.impl.Inventory;
 
 import java.util.Random;
 
@@ -13,12 +14,14 @@ public class FletchingHandler {
     private final Random random;
     private String taskDescription;
     private AntiBanHandler antiBanHandler;
+    private MethodContext context;
 
 
     public FletchingHandler(final MethodContext context) {
         this.root = buildTree(context);
         random = new Random();
         antiBanHandler = new AntiBanHandler(context);
+        this.context = context;
     }
 
     /**
@@ -53,7 +56,9 @@ public class FletchingHandler {
             pointer = pointer.isValid() ? pointer.getSuccess() : pointer.getFailure();
         final LeafNode toExecute = ((LeafNode) pointer);
         taskDescription = toExecute.getTaskDescription();
-        if(toExecute.isAntiBanActive()) antiBanHandler.verify();
+        if (toExecute.isAntiBanActive()) antiBanHandler.verify();
+        final Inventory inventory = context.getInventory();
+        if (inventory.isItemSelected()) inventory.deselect();
         return toExecute.execute() ? -1 : random.nextInt(25);
     }
 

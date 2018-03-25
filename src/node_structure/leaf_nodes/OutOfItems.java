@@ -1,5 +1,6 @@
 package node_structure.leaf_nodes;
 
+import items.FletchingProducts;
 import node_structure.BranchNode;
 import node_structure.LeafNode;
 import org.dreambot.api.methods.MethodContext;
@@ -13,7 +14,7 @@ public class OutOfItems extends LeafNode {
     @Override
     public boolean execute() {
         final Bank bank = getContext().getBank();
-        return (!bank.contains("Knife") || !bank.contains("Maple logs"))? TASK_FAILURE: TASK_SUCCESS;
+        return (!bank.contains("Knife") || !bank.contains(FletchingProducts.MAPLE_LOGS.getName()))? TASK_FAILURE: TASK_SUCCESS;
     }
 
     @Override
