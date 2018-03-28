@@ -1,6 +1,6 @@
 package node_structure.branch_nodes;
 
-import items.FletchingProducts;
+import items.FletchingResources;
 import node_structure.BranchNode;
 import org.dreambot.api.methods.MethodContext;
 import org.dreambot.api.methods.container.impl.Inventory;
@@ -16,6 +16,6 @@ public class BankContainsItems extends BranchNode {
         final MethodContext context = getContext();
         final Inventory inventory = context.getInventory();
         final Bank bank = context.getBank();
-        return (inventory.contains(FletchingProducts.MAPLE_LOGS.getName()) || bank.contains(FletchingProducts.MAPLE_LOGS.getName())) && (inventory.contains("Knife") || (bank.contains("Knife")));
+        return (inventory.contains(FletchingResources.YEW_LOGS.getName()) || bank.contains(FletchingResources.YEW_LOGS.getName())) && (inventory.contains("Knife") || (bank.contains("Knife")));
     }
 }

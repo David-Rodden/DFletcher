@@ -1,6 +1,6 @@
 package node_structure.branch_nodes;
 
-import items.FletchingProducts;
+import items.FletchingResources;
 import node_structure.BranchNode;
 import org.dreambot.api.methods.MethodContext;
 
@@ -11,6 +11,6 @@ public class ContainsItems extends BranchNode {
 
     @Override
     public boolean isValid() {
-        return getContext().getInventory().containsAll("Knife", FletchingProducts.MAPLE_LOGS.getName());
+        return getContext().getInventory().containsAll("Knife", FletchingResources.YEW_LOGS.getName());
     }
 }

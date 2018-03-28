@@ -1,9 +1,10 @@
 package node_structure.leaf_nodes;
 
-import items.FletchingProducts;
+import items.FletchingResources;
 import node_structure.BranchNode;
 import node_structure.LeafNode;
 import org.dreambot.api.methods.MethodContext;
+import org.dreambot.api.methods.container.impl.Inventory;
 import org.dreambot.api.methods.container.impl.bank.Bank;
 
 public class WithdrawItems extends LeafNode {
@@ -16,9 +17,11 @@ public class WithdrawItems extends LeafNode {
         final MethodContext context = getContext();
         final boolean hasKnife = context.getInventory().contains("Knife");
         final Bank bank = context.getBank();
-        if((!hasKnife && !bank.contains("Knife")) || !bank.contains(FletchingProducts.MAPLE_LOGS.getName())) return TASK_FAILURE;
-        context.getBank().withdraw(!hasKnife ? "Knife" : FletchingProducts.MAPLE_LOGS.getName(), !hasKnife ? 1 : 27);
-        MethodContext.sleepUntil(this::isParentConditionValid, 2000);
+        if ((!hasKnife && !bank.contains("Knife")) || !bank.contains(FletchingResources.YEW_LOGS.getName()))
+            return TASK_FAILURE;
+        bank.withdraw(!hasKnife ? "Knife" : FletchingResources.YEW_LOGS.getName(), !hasKnife ? 1 : 27);
+        final Inventory inventory = context.getInventory();
+        MethodContext.sleepUntil(() -> !hasKnife ? inventory.contains("Knife") : inventory.contains(FletchingResources.YEW_LOGS.getName()), 2000);
         return TASK_SUCCESS;
     }
 

@@ -1,5 +1,6 @@
 package node_structure.leaf_nodes;
 
+import items.FletchingProducts;
 import node_structure.BranchNode;
 import node_structure.LeafNode;
 import org.dreambot.api.methods.MethodContext;
@@ -13,13 +14,13 @@ public class DepositItems extends LeafNode {
     @Override
     public boolean execute() {
         final Bank bank = getContext().getBank();
-        bank.depositAll("Maple longbow (u)");
+        bank.depositAll(FletchingProducts.YEW_LONGBOW_U.getName());
         MethodContext.sleepUntil(() -> !isParentConditionValid(), 1000);
         return TASK_SUCCESS;
     }
 
     @Override
     public String getTaskDescription() {
-        return "Depositing Maple logs";
+        return "Depositing " + FletchingProducts.YEW_LONGBOW_U.getName();
     }
 }
